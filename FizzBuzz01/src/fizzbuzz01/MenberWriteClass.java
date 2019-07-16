@@ -8,10 +8,16 @@ package fizzbuzz01;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
+/**
+ *
+ * @author shiori-o
+ *
+ */
 public class MenberWriteClass {
 	/**
 	 * メインメソッドです
@@ -21,48 +27,21 @@ public class MenberWriteClass {
 
 	public static void main(String[] args) {
 
-		/**
-		 * 新たに書き直したソース
-		 *
-		 */
 		try {
-			File csv = new File("member.csv");
-			// FileWriterクラスのオブジェクトを生成する
-			FileWriter file = new FileWriter(csv, true);
-			// PrintWriterクラスのオブジェクトを生成する
-			PrintWriter pw = new PrintWriter(new BufferedWriter(file));
 
-			//ファイルに追記する
+			File csv = new File("member.csv");
+			// 文字コードを指定する
+			PrintWriter pw = new PrintWriter(
+					new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csv, true), "Shift-JIS")));
+
+			//ファイルに文字列を書き込む
 			pw.println("鹿島" + "," + 5 + "," + "第五システム統括部" + "," + 1);
 
-			//ファイルを閉じる
+			//ファイルをクローズする
 			pw.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (UnsupportedEncodingException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		/***
-		 * 初めに書いていたソース
-		 * try {
-		 *		File csv = new File("member.csv");
-		 *
-		 *		 書き込み
-		 *		BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-		 *
-		 *		 新しいデータ
-		 *		bw.write("鹿島" + "," + 5 + "," + "第五システム統括部" + "," + 1);
-		 *		bw.newLine();
-		 *		bw.close();
-		 *
-		 *		}catch(FileNotFoundException e) {
-		 *		e.printStackTrace();
-		 *		}catch(IOException e) {
-		 *		e.printStackTrace();
-		 *		}
-		 *
-		 */
 
 	}
 
