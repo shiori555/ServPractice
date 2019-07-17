@@ -33,8 +33,8 @@ public class CommeD extends HttpServlet {
 
 		response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
 		PrintWriter writer = response.getWriter();
-		writer.write("abc,def,123\r\n");
-		writer.write("あいう,感じ,0.123\r\n");
+		writer.print("abc,def,123\r\n");
+		writer.print("あいう,感じ,0.123\r\n");
 		writer.close();
 	}
 
